@@ -1,0 +1,25 @@
+#import packages 
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+plt.style.use('./deeplearning.mplstyle')
+
+#upload images
+
+img1=cv2.imread('Untitled Folder/pic1.PNG')
+img2=cv2.imread('Untitled Folder/pic2.PNG')
+
+#denoising images
+
+img1_denoised=cv2.fastNlMeansDenoisingColored(img1,None,20,15,7,21)
+img2_denoised=cv2.fastNlMeansDenoisingColored(img2,None,11,10,7,21)
+
+#visualising images befor and after denoising process
+
+fig,ax=plt.subplots(2,2,figsize=(15,10))
+fig.tight_layout()
+ax[(0,0)].imshow(cv2.cvtColor(img1,cv2.COLOR_BGR2RGB))
+ax[(0,1)].imshow(cv2.cvtColor(img1_denoised,cv2.COLOR_BGR2RGB))
+ax[(1,0)].imshow(cv2.cvtColor(img2,cv2.COLOR_BGR2RGB))
+ax[(1,1)].imshow(cv2.cvtColor(img2_denoised,cv2.COLOR_BGR2RGB))
